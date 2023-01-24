@@ -25,8 +25,10 @@ export default {
     //so not seccessary to put in ref()
 
     function selectUser(uid) {
-      selectedUser.value = activeUsers.values.find((usr) => usr.id === uid);
-    } // find in all 'activeUsers' who have same id with uid
+      selectedUser.value = activeUsers.find((usr) => usr.id === uid);
+    }
+    // find in all 'activeUsers' who have same id with uid
+    // 'activeUsers' dont have ref so no need .value
 
     return {
       selectedUser,
