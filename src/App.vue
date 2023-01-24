@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 import USER_DATA from './dummy-data.js';
 
 import UserList from './components/users/UserList.vue';
@@ -16,17 +18,34 @@ export default {
     UserList,
     ProjectsList,
   },
-  data() {
+  setup() {
+    const selectedUser = ref(null);
+    const activeUsers = USER_DATA;
+    // Because activerUser doesnt change
+    //so not seccessary to put in ref()
+
+    function selectUser(uid) {
+      selectedUser.value = activeUsers.values.find((usr) => usr.id === uid);
+    } // find in all 'activeUsers' who have same id with uid
+
     return {
-      selectedUser: null,
-      activeUsers: USER_DATA,
+      selectedUser,
+      activeUsers,
+      selectUser,
     };
   },
-  methods: {
-    selectUser(uid) {
-      this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
-    },
-  },
+  // data() {
+  //   return {
+  //     selectedUser: null,
+  //     activeUsers: USER_DATA,
+  //   };
+  // },
+
+  // methods: {
+  //   selectUser(uid) {
+  //     this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
+  //   },
+  // },
 };
 </script>
 
